@@ -190,9 +190,9 @@ void CScanBitmap::vClearLocalBitmap(unsigned char* pcBitmapOther) {
 };
 
 int CScanBitmap::nGetLocalBitmap(int nPix0,int nPix1,unsigned char* pcBitmapOther) {
-    int nx; 
     unsigned char* pcBitmap = pcBitmapOther?(pcBitmapOther):m_pcLocalBitmap;
-    return ((((int) (pcBitmap[((nx = (m_nDataBits*(nPix1*m_a2nImageDim[0] + nPix0))) >> 3)])) + (((int) pcBitmap[(nx >> 3)+1]) << 8)) >> (nx % 8)) & m_nDataBitMask; 
+    const int nx = m_nDataBits*(nPix1*m_a2nImageDim[0] + nPix0);
+    return ((((int) pcBitmap[nx >> 3]) + (((int) pcBitmap[(nx >> 3)+1]) << 8)) >> (nx % 8)) & m_nDataBitMask;
 }
 
 
@@ -498,9 +498,10 @@ int CScanBitmap::nReadTrailerInfo() {
         return 1;
     -m_anBitmapStart;
     for (nx=0;nx<nToRead;) {
-        m_anBitmapStart[nx/4] = 0;
+        const int nIndex = nx/4;
+        m_anBitmapStart[nIndex] = 0;
         for (ny=0;ny<4;ny++)
-            m_anBitmapStart[nx/4] += (((int) pcBuffer[nx++]) << (ny*8));
+            m_anBitmapStart[nIndex] += (((int) pcBuffer[nx++]) << (ny*8));
     };
     for (nx=1;nx<m_anBitmapStart.size();nx++) {
         if (m_anBitmapStart[nx]<=m_anBitmapStart[nx-1])
@@ -652,7 +653,7 @@ int CScanBitmap::nWriteMaskedImage(Cstring& sImageName,Cimage* poOtherImage) {
     
     for (nx=0;nx<m_a2nImageDim[0];nx++) {
         for (ny=0;ny<m_a2nImageDim[1];ny++) {
-            if (nValue = nGetLocalBitmap(nx,ny)) {
+            if ((nValue = nGetLocalBitmap(nx,ny))) {
                 bOnEdge = false;
 
                 // Check around the box and see if there is a zero pixel.                            

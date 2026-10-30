@@ -253,7 +253,7 @@ bool BitmapRLE::Generate(Cimage &Image)
    size = pBufferEnd-pBuffer;
    Set(pBuffer,size);
 
-   delete pBuffer;
+   delete [] pBuffer;
 
    return true;
 }
@@ -443,7 +443,7 @@ unsigned short *BitmapRLE::GenerateFromFloatImage(Cimage &Image,
    bool ones = (0.0 != *pData);
    pData++;
 
-   for(NULL; pData < pEnd; pData++){
+   for(; pData < pEnd; pData++){
 
       // If current pixel is "same" as the previous pixel, just increment
       // the count.
@@ -483,7 +483,7 @@ unsigned short *BitmapRLE::GenerateFromUnsignedShortImage(Cimage &Image,
    bool ones = (0 != *pData);
    pData++;
 
-   for(NULL; pData < pEnd; pData++){
+   for(; pData < pEnd; pData++){
 
       // If current pixel is "same" as the previous pixel, just increment
       // the count.
@@ -529,7 +529,7 @@ unsigned short *BitmapRLE::SetRunLengthValue(const unsigned short * const pData,
    unsigned short *p = const_cast<unsigned short *>(pData);
    long cnt = RunLength;
 
-   for(NULL; cnt > 0; cnt -= m_MaximumRunLength){
+   for(; cnt > 0; cnt -= m_MaximumRunLength){
       unsigned short value = (cnt > m_MaximumRunLength) ? m_MaximumRunLength :
                                                           cnt;
       if(NonZeroValue)

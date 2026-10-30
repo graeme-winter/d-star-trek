@@ -105,7 +105,7 @@ int main(int   argc,      // Command line argument count
       cout << "ERROR, bogus max value: " << uiMaxValue << "!\n" << endl;
       exit (2);
     }
-  if (uiMinValue < uiMinValue)
+  if (uiMaxValue < uiMinValue)
     {
       cout << "ERROR, bogus min value: " << uiMinValue << "!\n" << endl;
       exit (2);

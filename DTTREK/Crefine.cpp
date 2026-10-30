@@ -1371,7 +1371,7 @@ int Crefine::nListResults(void)
               fTotal = 0.0;
               for (i = 0; i < 10 ;i++)
                   fTotal += pfRefs[i];
-              printf("%c ",a3cHKL[nAxis],"");
+              printf("%c ",a3cHKL[nAxis]);
               for (i = 0;i < 10; i++) {
                   f0 = pfRefs[i]/max(1.0,fTotal);
                   if (f0 == 0.0)

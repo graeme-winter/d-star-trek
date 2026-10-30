@@ -6041,7 +6041,7 @@ int tagBinary_Ref_Header::nReadHeader(const Cstring& sFilename,
         float fCode;
         float fNewCode;
        
-        fCode = fCode = *((float*) & _unionbrace._structbrace.a16cSampleFloat[0]);
+        fCode = *((float*) & _unionbrace._structbrace.a16cSampleFloat[0]);
         if (fCode!=(float) ms_fCodeFloat) {
             fNewCode = fSwapFloat(fCode);
             if (fNewCode!= (float) ms_fCodeFloat) {

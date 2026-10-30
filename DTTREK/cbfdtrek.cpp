@@ -807,7 +807,7 @@ nReadCBFData(const Cstring &rsFilename, void *pvData,
       if (nDim1 > anRowStart[i])
         nNumHorzSections++;
     
-    if ( (bAddOne) && (0 < nNumVertSections) || (0 < nNumHorzSections) )
+    if ( ((bAddOne) && (0 < nNumVertSections)) || (0 < nNumHorzSections) )
       {
         // Now restore 0's or nGapValue in the seams.
         // There are nNumVertSections columns of 0s and nNumHorzSections rows of 0s

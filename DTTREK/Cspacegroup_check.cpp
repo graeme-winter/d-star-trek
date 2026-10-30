@@ -1808,7 +1808,7 @@ bool CSpaceGroupTableEntry::bGenerateSpaceGroupSolutions(Cstring& sLaueClassAndC
     bool    bNonStandard = false;
     while( pc[0] )
     {
-        if( pc2 = strchr(pc, ',') ) 
+        if( (pc2 = strchr(pc, ',')) ) 
         { 
             *pc2=0;
             
@@ -1825,7 +1825,7 @@ bool CSpaceGroupTableEntry::bGenerateSpaceGroupSolutions(Cstring& sLaueClassAndC
         if( strcmp(pc2,"*") ) // if pc2 is not pointing to '*'
         {
             // Look for a '.'.  This indicates that a non-standard space group will need to be changed. (if we are reindexing).
-            if( pc3 = strchr(pc2,'.') )
+            if( (pc3 = strchr(pc2,'.')) )
             {
                 ///////////////////////////////////////////////
                 //strcpy(cpSpaceNames[nSpaceGroupCt],pc3+1);
@@ -2362,8 +2362,8 @@ void Cspacegroup_check::vSelectCandidateSpaceGroups(const int nFavoredSpaceGroup
     {
         if( ii == 0 ||  // if we started from index 0, it means we don't have any conclusive tests besides entry with index 0
             m_vecSpaceGroupTableEntryPtrs[ii]->bIsInconclusive() ||
-            m_vecSpaceGroupTableEntryPtrs[ii]->bIsConclusive() && m_vecSpaceGroupTableEntryPtrs[ii]->nGetNumberOfConclusivePassedTests() 
-                                                                  == nMaxNumberOfConclusiveTests
+            (m_vecSpaceGroupTableEntryPtrs[ii]->bIsConclusive() && m_vecSpaceGroupTableEntryPtrs[ii]->nGetNumberOfConclusivePassedTests() 
+                                                                  == nMaxNumberOfConclusiveTests)
           )
         {
             m_vecSpaceGroupTableEntryPtrs[ii]->vSetSelected();

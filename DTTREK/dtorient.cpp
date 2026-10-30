@@ -75,7 +75,7 @@ using std::cout;
 using std::endl;
 using std::flush;
 
-void vError(const int nErrorNum=0, const Cstring& sError=NULL);
+void vError(const int nErrorNum=0, const Cstring& sError="");
 int  nNTHUfixup(Cimage_header&);
 int  nNTHUfixup(Cstring&, Cimage_header&, Cimage_header&, Ccrystal*);
 

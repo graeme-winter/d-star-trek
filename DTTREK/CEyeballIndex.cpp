@@ -1352,8 +1352,8 @@ double CEyeballIndex::fDPSFFT(double a3fVecT[3])
   pfTemp    = pfData;
   for (ni = 0; ni < nNumBins/2; ni++)
     {
-      fTemp       = *pfTemp * *pfTemp++;
-      fTemp      += *pfTemp * *pfTemp++;
+      fTemp       = pfTemp[0] * pfTemp[0] + pfTemp[1] * pfTemp[1];
+      pfTemp     += 2;
       pfData[ni]   = fTemp;
     }
 

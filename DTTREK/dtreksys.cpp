@@ -1472,7 +1472,7 @@ Cstring sBuildStrategyScanPrefix(const Cstring& sStrategyPrefix, const Cstring& 
 {
     Cstring   sPrefix(sStrategyPrefix);
 
-    if( "" == sStrategyPrefix && 0 < nScanNumber || "" != sStrategyPrefix )
+    if( ("" == sStrategyPrefix && 0 < nScanNumber) || "" != sStrategyPrefix )
     { 
         char      pcTemp[20];
         sprintf(pcTemp,"S%d_", nScanNumber);

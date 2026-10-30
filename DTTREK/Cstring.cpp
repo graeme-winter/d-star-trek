@@ -849,7 +849,7 @@ int MSCString::find(const char *pc,
  * for a part of pc.
  */
    pcEnd = pcAt+(n-nLength)+1;
-   for(NULL; pcAt < pcEnd; pcAt++){
+   for(; pcAt < pcEnd; pcAt++){
       if(NULL == (pcAt=strchr(pcAt,(int)(*pc))))
          break;
       if (pcAt >= pcEnd)
@@ -902,7 +902,7 @@ int MSCString::nReverseFind(const char c,
    pc = strrchr(pcSearchStr,(int)c);
    idx = (pc) ? pc-pcSearchStr : -1;
    
-   delete pcSearchStr;
+   delete [] pcSearchStr;
    return idx;
 }
 
@@ -956,7 +956,7 @@ int MSCString::nReverseFind(const char *pc,
  * for a part of pc.
  */
    pcEnd = m_pcString-1;
-   for(NULL; pcAt > pcEnd; pcAt--){
+   for(; pcAt > pcEnd; pcAt--){
        // Find last occurrence of pc[0] beginning the search at pcAt.
        if(NULL == (pcAt=m_pcString+nReverseFind((int)(*pc),pcAt-m_pcString)))
            break;

@@ -3420,8 +3420,8 @@ Cindex::nDPSFFT(const float a3fVecT[3], const int nRow,
   pfTemp    = pfData;
   for (i = 0; i < nNumBins/2; i++)
     {
-      fTemp       = *pfTemp * *pfTemp++;
-      fTemp      += *pfTemp * *pfTemp++;
+      fTemp       = pfTemp[0] * pfTemp[0] + pfTemp[1] * pfTemp[1];
+      pfTemp     += 2;
       pfData[i]   = fTemp;
     }
 

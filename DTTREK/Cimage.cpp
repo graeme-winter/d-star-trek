@@ -570,6 +570,9 @@ Cimage::operator=(const Cimage &oImageIn)
 {
   int i;
 
+  if (this == &oImageIn)
+    return *this;
+
   // Don't call this because it will cause a memory leak if the image
   // currently has data.  nInitValues() will set the pointer to the
   // data to be NULL, but not deallocate the memory.  

@@ -838,7 +838,7 @@ void CDTMainRefine::vError(const int nErrorNum, const Cstring& sMessage)
           "                       will adjust the value of the goniometer rotation vector\n"
           "                       attached to the physical crystal.\n\n"
           " SourceWave, SourceRot1, SourceRot2, SourceRot\n\n"
-          " All                   All parameters.\n\n";
+          " All                   All parameters.\n\n"
           "                       For twinned samples using '-twin 0', each -go expands to:\n"
           "                       +CrysAll -twin 1 -go -twin 2 -go [...] +DetAll\n"
           "                       -twin -1 -go -DetAll -twin -2 -go [...]\n\n";

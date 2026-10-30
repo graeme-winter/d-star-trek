@@ -68,7 +68,7 @@ using std::flush;
 #define vError dtprofit_vError
 #endif
 
-void vError(const int nErrorNum=0, const Cstring& sError=NULL);
+void vError(const int nErrorNum=0, const Cstring& sError="");
 
 #ifdef SSI_PC
 #define main dtrebatch_main

@@ -347,9 +347,9 @@ int Cstat::nMarkStat(bool bMark,eMarkTest eTest,CstatValue fVal) {
         // Reject all outside sigma bounds.
         fTest0=fStandardDeviation()*fVal;
         fTest1=fAverage(0);
-        for (nx=0;nx<m_nNumElements;nx++)
-            if (m_cMarkers[nx]<2)
-                if ((m_cMarkers[nx]!=0)==bMarkTest) 
+        for (nx=0;nx<m_nNumElements;nx++) {
+            if (m_cMarkers[nx]<2) {
+                if ((m_cMarkers[nx]!=0)==bMarkTest) {
                     if (eTest==S_ABOVE) {
                         if (m_fValues[nx]-fTest1>fTest0) {
                             nChangeCount+=(m_cMarkers[nx]!=nMark);
@@ -366,6 +366,9 @@ int Cstat::nMarkStat(bool bMark,eMarkTest eTest,CstatValue fVal) {
                             m_cMarkers[nx]=nMark;
                         };                           
                     };              
+                }
+            }
+        }
         break;
     case S_ABOVEBELOW_ITER: {
         int nCount = 1;

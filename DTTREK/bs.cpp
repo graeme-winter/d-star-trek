@@ -143,7 +143,7 @@ nReadSiemensHeader(const int* pnFile, const Cstring& rsFilename,
 	    {
 	      cout << "ERROR reading header!\n";
 	    }
-	  delete pcTemp;
+	  delete [] pcTemp;
 	}
     }
   if (0 == nStat)

@@ -1515,8 +1515,8 @@ bool Cstrategy::bScanUsed(int nScan, int nOrder)
     // unless the user used the -choose option
     if( nOrder == 0 )
     {
-        bRet =  nScan >= m_a2nFirstScan[0]  && nScan <= m_a2nFirstScan[1] ||
-                nScan >= m_a2nSecondScan[0] && nScan <= m_a2nSecondScan[1];
+        bRet =  (nScan >= m_a2nFirstScan[0]  && nScan <= m_a2nFirstScan[1]) ||
+                (nScan >= m_a2nSecondScan[0] && nScan <= m_a2nSecondScan[1]);
     }
     else if( nOrder == 1)
     {

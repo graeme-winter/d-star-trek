@@ -55,7 +55,7 @@ const Cstring Gs_DTREK_OVERWRITE = "DTREK_OVERWRITE";
 
 //+Function prototypes
 
-void vError(const int nErrorNum=0, const Cstring& sError=NULL);
+void vError(const int nErrorNum=0, const Cstring& sError="");
 
 int main(int   argc,
 	 char *argv[])

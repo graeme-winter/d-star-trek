@@ -66,7 +66,7 @@ using std::flush;
 
 //+Public functions
 
-void vError(const int nErrorNum=0, const Cstring& sError=NULL);
+void vError(const int nErrorNum=0, const Cstring& sError="");
 
 //+ Code begin
 

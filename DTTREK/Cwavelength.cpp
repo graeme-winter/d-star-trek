@@ -304,7 +304,7 @@ Cwavelength::nUpdateHeader(Cimage_header* poHeader, const Cstring &sPre)
       pfTemp[i+1] = m_pfWavelength[i];
     }
   nStat = poHeader->nReplaceValue(sPre + ms_sWavelength, m_nAlloc+1, pfTemp, 6);
-  delete pfTemp;
+  delete [] pfTemp;
   return (nStat);
 }
 

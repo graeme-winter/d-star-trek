@@ -126,7 +126,8 @@ public:
       // was replace by the following which seems to work:
       // However, it would be nice to re-write the "nTemp = ...." line to be more clear, would it not?
       int nTemp;
-      nTemp = maxd < index + 1 ? increase(index+1) : 0, maxwi = maxwi > index ? maxwi : index, index;
+      nTemp = maxd < index + 1 ? increase(index+1) : 0;
+      maxwi = maxwi > index ? maxwi : index;
       // In the above line, nTemp is always 0.
       // debugging: if (index > maxd) printf("index, maxd are::  %d %d\n", index, maxd);      
       return d[index];

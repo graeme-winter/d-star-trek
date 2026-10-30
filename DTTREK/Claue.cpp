@@ -772,14 +772,22 @@ bool Claue::bCellChanges(double fPercentError,double* a6fCell,double a3x3fTransf
     oCrystal.nSetOrientMatrix(&a3x3fTempMat[0][0]);
     oCrystal.vGetCell(a6fNewCell);
 
+    static const char* const apcNames[6] = {"a", "b", "c", "alpha", "beta", "gamma"};
+    const char* apcChanged[6];
     nNumOutOfBounds = 0;
+    for (int nParam = 0; nParam < 6; nParam++)
+      {
+        if (fabs(a6fNewCell[nParam]-a6fCell[nParam])/max(a6fNewCell[nParam],a6fCell[nParam])>fPercentError)
+          {
+            nNumOutOfBounds++;
+            apcChanged[nParam] = apcNames[nParam];
+          }
+        else
+          apcChanged[nParam] = "";
+      }
     sprintf(pcOutputString,"WARNING:  Reindexing causes cell parameter(s) ( %s %s %s %s %s %s) to change by more than %4.2f percent.",
-        (fabs(a6fNewCell[0]-a6fCell[0])/max(a6fNewCell[0],a6fCell[0])>fPercentError)?((nNumOutOfBounds++),"a"):"",
-        (fabs(a6fNewCell[1]-a6fCell[1])/max(a6fNewCell[1],a6fCell[1])>fPercentError)?((nNumOutOfBounds++),"b"):"",
-        (fabs(a6fNewCell[2]-a6fCell[2])/max(a6fNewCell[2],a6fCell[2])>fPercentError)?((nNumOutOfBounds++),"c"):"",
-        (fabs(a6fNewCell[3]-a6fCell[3])/max(a6fNewCell[3],a6fCell[3])>fPercentError)?((nNumOutOfBounds++),"alpha"):"",
-        (fabs(a6fNewCell[4]-a6fCell[4])/max(a6fNewCell[4],a6fCell[4])>fPercentError)?((nNumOutOfBounds++),"beta"):"",
-        (fabs(a6fNewCell[5]-a6fCell[5])/max(a6fNewCell[5],a6fCell[5])>fPercentError)?((nNumOutOfBounds++),"gamma"):"",
+        apcChanged[0], apcChanged[1], apcChanged[2],
+        apcChanged[3], apcChanged[4], apcChanged[5],
         fPercentError*100.0
         );
     if (nNumOutOfBounds>0)
