@@ -320,7 +320,7 @@ int Ccrystal::nFindNumTwins(Cimage_header& oHeader) {
 	int nx;
     Cstring sTemp;
 	Cstring sPrefix;
-    char pcBuf[10];
+    char pcBuf[16];
     double fCell[6];
     
     nTemp = 0; 
@@ -1272,7 +1272,7 @@ int Ccrystal::nUpdateHeaderSigmaValues(Cimage_header* poHeader,
 
 int Ccrystal::nLoadKeywords(int nTwin) {
     Cstring sTemp;
-    char pcBuf[10];
+    char pcBuf[16];
     
     sTemp = ms_sCrystalPrefix;
     if (nTwin!=1) {

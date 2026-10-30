@@ -532,7 +532,7 @@ DTREK_WIN_DLL_DATA_EXPORT  static Cstring ms_snNonunfFlag;
               const int nNum);
 
 
-  ~Creflnlist ();
+  virtual ~Creflnlist ();
 
 ////////////////////////////////////////////////////////////////////////
 //+Member Function prototypes (none are virtual and cannot be overridden!?!

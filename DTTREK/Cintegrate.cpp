@@ -1504,13 +1504,13 @@ pre_refine_rollback:
 
           // Look for special override keyword
 
-          char a10cTemp[10];
+          char a16cTemp[16];
 //+jwp 1-Aug-2001
-          //          sprintf(a10cTemp, "_%03d", m_poScan->nGetSeqNum( )-1);
-          sprintf(a10cTemp, "_%04d", m_poScan->nGetSeqNum( )-1);
+          //          sprintf(a16cTemp, "_%03d", m_poScan->nGetSeqNum( )-1);
+          sprintf(a16cTemp, "_%04d", m_poScan->nGetSeqNum( )-1);
 //-jwp 1-Aug-2001
           (void) oImage.m_oHeader.nGetValue(Csource::ms_sSourceIntensity
-                                            + a10cTemp,
+                                            + a16cTemp,
                                             &fSourceIntensity);
 
           if (0.0 >= fSourceIntensity)

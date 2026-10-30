@@ -1,6 +1,7 @@
 //
 // Copyright (c) 1995 Molecular Structure Corporation
 //
+#include <stddef.h>
 #include <string.h>
 #include "dtreksys.h"
 #include "raxis.h"
@@ -1456,7 +1457,8 @@ int nBuildRAXISHeader(RAXIS_header& rtHeader,Cimage& oImage) {
   rtHeader.fPixShiftOdd   = 0.0;
   rtHeader.fIntRatioOdd   = 1.0;
   rtHeader.nMagicNum      = 0;
-  memset((void*)&rtHeader.nMagicNum, 0, 172);
+  memset((void*)&rtHeader.nMagicNum, 0,
+         sizeof(RAXIS_header) - offsetof(RAXIS_header, nMagicNum));
 
   //+JWP 2009-06-08
 

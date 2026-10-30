@@ -1,6 +1,7 @@
 //
 // Copyright (c) 1997 Molecular Structure Corporation
 //
+#include <stddef.h>
 #include <string.h>
 #include "dtreksys.h"
 #include "raxis.h"
@@ -1550,7 +1551,8 @@ nWriteSiemens(Cimage & oImage, const Cstring& sName)
   tRheader.fPixShiftOdd   = 0.0;
   tRheader.fIntRatioOdd   = 1.0;
   tRheader.nMagicNum      = 0;
-  memset((void*)&tRheader.nMagicNum, 0, 180);
+  memset((void*)&tRheader.nMagicNum, 0,
+         sizeof(RAXIS_header) - offsetof(RAXIS_header, nMagicNum));
 
   //strncpy(tRheader.a180cReserve4, "Unknown                                                                                                                                                                             ", 180);
   //- 3-Apr-2002
