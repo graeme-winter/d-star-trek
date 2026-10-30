@@ -150,9 +150,10 @@ if(NOT APPLE AND NOT WIN32)
   target_link_libraries(dtrek PUBLIC m)
 endif()
 
-# Legacy compilation settings: the code predates standard C++ in places.
-target_compile_options(dtrek PUBLIC
-  -w)
+# Warnings are being enabled incrementally; until they are all fixed the
+# default is to suppress them.
+set(DTREK_WARNING_FLAGS "-w" CACHE STRING "Compiler warning flags")
+target_compile_options(dtrek PUBLIC ${DTREK_WARNING_FLAGS})
 
 if(DTREK_WITH_PTYPES)
   find_path(PTYPES_INCLUDE_DIR pinet.h PATH_SUFFIXES ptypes)
