@@ -47,6 +47,8 @@
 #include <stdio.h>
 #include "DTCoreSocket.h"
 
+#ifdef DTREK_HAVE_PTYPES
+
 using namespace pt;
 
 // TODO : Consider removing m_bConnected state variable if it is
@@ -568,3 +570,44 @@ int CDTCoreSocket::IsConnected()
 
      return true;
 }
+
+#else  // !DTREK_HAVE_PTYPES
+
+// Built without ptypes.  Construction succeeds; every connection attempt or
+// transfer fails and reports why through GetLastError(), so callers take
+// their existing "no connection" paths.
+
+CDTCoreSocket::CDTCoreSocket()
+    : m_bConnected(false), m_strHostIP(NULL), m_iPort(0), m_bServer(false),
+      m_hConnectionSocket(NULL), m_hListenSocket(NULL)
+{
+    m_strLastError = "d*TREK was built without socket support (ptypes)";
+}
+
+CDTCoreSocket::CDTCoreSocket(const char * hostIP, const int port, bool bServer)
+    : m_bConnected(false), m_strHostIP(hostIP), m_iPort(port),
+      m_bServer(bServer), m_hConnectionSocket(NULL), m_hListenSocket(NULL)
+{
+    m_strLastError = "d*TREK was built without socket support (ptypes)";
+}
+
+CDTCoreSocket::~CDTCoreSocket() {}
+
+int CDTCoreSocket::IsConnected() { return 0; }
+int CDTCoreSocket::ConnectToServer(const int, const char *) { return 0; }
+bool CDTCoreSocket::SendString(CString) { return false; }
+bool CDTCoreSocket::ReceiveString(CString &) { return false; }
+bool CDTCoreSocket::AcceptClientConnection(const int, const int) { return false; }
+bool CDTCoreSocket::Init(const char *, const int, bool) { return false; }
+bool CDTCoreSocket::SetMaxPendingConnections(int) { return false; }
+void CDTCoreSocket::Disconnect() {}
+bool CDTCoreSocket::ReceiveDataBlock(char *, const int, int & BytesRead)
+{
+    BytesRead = 0;
+    return false;
+}
+int CDTCoreSocket::DataAvailable() { return 0; }
+bool CDTCoreSocket::SendDataBlock(const char *, const int) { return false; }
+pt::ipstmserver * CDTCoreSocket::CreateServerSocket(int) { return NULL; }
+
+#endif  // DTREK_HAVE_PTYPES

@@ -47,7 +47,17 @@
 #ifndef CORESOCKET_H
 #define CORESOCKET_H
 
+#ifdef DTREK_HAVE_PTYPES
 #include "pinet.h"  // ptypes stuff
+#else
+// Built without ptypes: the socket interface (used only to talk to a
+// controlling GUI) is present but every operation fails; see
+// DTCoreSocket.cpp.
+namespace pt {
+class ipstream;
+class ipstmserver;
+}
+#endif
 #include "Cstring.h"
 
 typedef MSCString CString;
