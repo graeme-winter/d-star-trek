@@ -24,9 +24,9 @@ endif()
 set(CMAKE_C_FLAGS_RELWITHDEBINFO "-O1 -g")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O1 -g")
 
-set(CMAKE_CXX_STANDARD 98)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # --- Dependencies -----------------------------------------------------------
 
@@ -152,7 +152,7 @@ endif()
 
 # Legacy compilation settings: the code predates standard C++ in places.
 target_compile_options(dtrek PUBLIC
-  $<$<COMPILE_LANGUAGE:CXX>:-fpermissive> -w)
+  -w)
 
 if(DTREK_WITH_PTYPES)
   find_path(PTYPES_INCLUDE_DIR pinet.h PATH_SUFFIXES ptypes)
